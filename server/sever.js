@@ -4,7 +4,7 @@ const path = require(`path`)
 const app = express()
 
 app.use(express.json())
-
+app.use(express.static(path.join(__dirname, `../public`)))
 // include and initialize the rollbar library with your access token
 const Rollbar = require('rollbar')
 const rollbar = new Rollbar({

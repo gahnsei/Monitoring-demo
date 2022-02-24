@@ -11,6 +11,22 @@ const rollbar = new Rollbar({
   captureUnhandledRejections: true,
 })
 
+let students = []
+
+app.post('/api/student', (req, res)=>{
+    let {name} = req.body
+    name = name.trim()
+
+    students.push(name)
+
+    rollbar.log('Student added successfully', {author: `Sei`, type: `manual`})
+
+
+    res.status(200).send(students)
+})
+
+app.use(rollbar.errorHandler())
+
 // record a generic message and send it to Rollbar
 rollbar.log('Hello world!')
 
